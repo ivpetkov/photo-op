@@ -1,0 +1,30 @@
+dependencies: \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceID.m \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/Public/FIRInstanceID.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRAppInternal.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRApp.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRErrors.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRErrorCode.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRComponent.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRComponentContainer.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRComponentType.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRLibrary.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIROptions.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleUtilities/GULAppEnvironmentUtil.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/Private/FIRInstanceID+Private.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/Private/FIRInstanceIDCheckinPreferences.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDAuthService.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDCheckinService.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDUtilities.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDCombinedHandler.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDConstants.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDDefines.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDKeyPairStore.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDLogger.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRIMessageCode.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDStore.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDTokenInfo.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDAPNSInfo.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDTokenManager.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/FIRInstanceIDVersionUtilities.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseInstanceID/Firebase/InstanceID/NSError+FIRInstanceID.h

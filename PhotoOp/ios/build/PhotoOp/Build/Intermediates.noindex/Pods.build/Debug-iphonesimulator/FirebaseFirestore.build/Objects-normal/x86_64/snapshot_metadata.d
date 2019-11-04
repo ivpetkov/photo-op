@@ -1,0 +1,21 @@
+dependencies: \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/snapshot_metadata.cc \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/api/snapshot_metadata.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/util/hashing.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/objc/objc_type_traits.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/core/src/firebase/firestore/util/type_traits.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/meta/type_traits.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/base/config.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/base/policy_checks.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/types/optional.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/utility/utility.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/base/internal/inline_variable.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/base/internal/identity.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/base/internal/invoke.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/base/attributes.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/types/bad_optional_access.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/types/internal/optional.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/memory/memory.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/base/macros.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/base/port.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseFirestore/Firestore/third_party/abseil-cpp/absl/base/optimization.h

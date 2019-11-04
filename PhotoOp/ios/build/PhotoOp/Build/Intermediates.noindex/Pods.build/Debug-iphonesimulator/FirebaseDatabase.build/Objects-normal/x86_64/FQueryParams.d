@@ -1,0 +1,22 @@
+dependencies: \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Core/FQueryParams.m \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Core/FQueryParams.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Constants/FConstants.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/FIndex.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Core/View/Filter/FIndexedFilter.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Core/View/Filter/FNodeFilter.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Core/View/Filter/FLimitedFilter.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Snapshot/FNode.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Core/Utilities/FPath.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Api/Private/FTypedefs_Private.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/FPriorityIndex.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/FRangedFilter.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Snapshot/FSnapshotUtilities.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Utilities/FUtilities.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRLogger.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRLoggerLevel.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Utilities/FParsedUrl.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Core/FRepoInfo.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Utilities/FValidation.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Public/FIRDataEventType.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseDatabase/Firebase/Database/Utilities/FTypedefs.h

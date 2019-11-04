@@ -1,0 +1,31 @@
+dependencies: \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/FIRStorage.m \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Public/FIRStorage.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Public/FIRStorageConstants.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Private/FIRStorageComponent.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Private/FIRStorageConstants_Private.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Private/FIRStoragePath.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Private/FIRStorageReference_Private.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Public/FIRStorageReference.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Public/FIRStorageDownloadTask.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Public/FIRStorageObservableTask.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Public/FIRStorageTask.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Public/FIRStorageMetadata.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Public/FIRStorageListResult.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Public/FIRStorageUploadTask.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Private/FIRStorageTokenAuthorizer.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GTMSessionFetcher/GTMSessionFetcherService.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GTMSessionFetcher/GTMSessionFetcher.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Private/FIRStorageUtils.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/FirebaseStorage/Firebase/Storage/Private/FIRStorage_Private.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseAuthInterop/FIRAuthInterop.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRAppInternal.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRApp.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRErrors.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRErrorCode.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRComponentContainer.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRComponentType.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRLibrary.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIRComponent.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/FirebaseCore/FIROptions.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GTMSessionFetcher/GTMSessionFetcherLogging.h

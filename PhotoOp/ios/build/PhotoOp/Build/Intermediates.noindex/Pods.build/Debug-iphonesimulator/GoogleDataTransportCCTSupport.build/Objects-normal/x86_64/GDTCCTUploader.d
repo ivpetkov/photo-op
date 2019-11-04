@@ -1,0 +1,22 @@
+dependencies: \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/GoogleDataTransportCCTSupport/GoogleDataTransportCCTSupport/GDTCCTLibrary/GDTCCTUploader.m \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/GoogleDataTransportCCTSupport/GoogleDataTransportCCTSupport/GDTCCTLibrary/Private/GDTCCTUploader.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTUploader.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTClock.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTLifecycle.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTPlatform.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTPrioritizer.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTUploadPackage.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTTargets.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTConsoleLogger.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTRegistrar.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/nanopb/pb.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/nanopb/pb_decode.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/nanopb/pb_encode.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/GoogleDataTransportCCTSupport/GoogleDataTransportCCTSupport/GDTCCTLibrary/Private/GDTCCTNanopbHelpers.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTStoredEvent.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTDataFuture.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTEvent.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/Headers/Private/GoogleDataTransport/GDTEventDataObject.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/GoogleDataTransportCCTSupport/GoogleDataTransportCCTSupport/GDTCCTLibrary/Protogen/nanopb/cct.nanopb.h \
+  /Users/iva/Documents/quarters/fall_2019/cse115a/photo-op/react-native-firebase-starter/ios/Pods/GoogleDataTransportCCTSupport/GoogleDataTransportCCTSupport/GDTCCTLibrary/Private/GDTCCTPrioritizer.h

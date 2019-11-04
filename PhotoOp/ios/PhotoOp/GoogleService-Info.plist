@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>162606915127-a9vgtmf7uupndvka3ea01a47vjkp3oro.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.162606915127-a9vgtmf7uupndvka3ea01a47vjkp3oro</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBv__05nyUa8JC7A1WRZ4KCDJnfYP5Bt5o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>162606915127</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.invertase.PhotoOp</string>
+	<key>PROJECT_ID</key>
+	<string>photo-op-2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>photo-op-2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:162606915127:ios:a486a79e3b70aefc0de9b2</string>
+	<key>DATABASE_URL</key>
+	<string>https://photo-op-2.firebaseio.com</string>
+</dict>
+</plist>
