@@ -1,8 +1,16 @@
 import React from 'react';
 import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-native';
-
+import List from './List.js'
 import firebase from 'react-native-firebase';
 
+const App = () => {
+   return (
+      <List />
+   )
+}
+export default App
+
+/*
 export default class App extends React.Component {
   constructor() {
     super();
@@ -99,3 +107,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   }
 });
+*/
