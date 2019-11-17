@@ -1,11 +1,15 @@
 import React from 'react';
 import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-native';
-import List from './List.js'
 import firebase from 'react-native-firebase';
+import List from './List.js'
+import Header from './Header.js'
 
 const App = () => {
    return (
-      <List />
+     <ScrollView>
+        <Header />
+        <List />
+      </ScrollView>
    )
 }
 export default App

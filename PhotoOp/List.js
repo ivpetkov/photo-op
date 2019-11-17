@@ -64,8 +64,8 @@ export default List
 
 const styles = StyleSheet.create ({
    container: {
-      padding: 10,
-      marginTop: 3,
+      padding: 20,
+      marginTop: 10,
       backgroundColor: '#d9f9b1',
       alignItems: 'center',
    },
