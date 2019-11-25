@@ -42,8 +42,7 @@ class HomeScreen extends React.Component {
       photoDists: [],
       distVals:[],
       isLoading: true,
-      locText: '400+Beach+St',
-      inputText: '',
+      locText: '',
     }
     this.calculateDistance = this.calculateDistance.bind(this);
   }
@@ -259,13 +258,12 @@ class HomeScreen extends React.Component {
           <TextInput
             style={{height: 40}}
             placeholder="Santa Cruz"
-            onChangeText={(text) => this.setState({inputText: text})}
+            onChangeText={(text) => this.setState({locText: text})}
             onSubmitEditing={a => {
               console.log(`onSubmitEditing: ${this.state.inputText}`),
-              this.setState({locText: this.state.inputText}),
               this.calculateNewDistance()
             }}
-            value={this.state.inputText}
+            value={this.state.locText}
           />
         </View>
         {photoButtons}
