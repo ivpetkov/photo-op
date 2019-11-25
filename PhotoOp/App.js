@@ -3,7 +3,30 @@ import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityI
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { getDistance, convertDistance } from 'geolib';
-//import LocationButtons from './src/LocationButtons.js'
+
+class PizzaTranslator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {text: ''};
+  }
+
+  render() {
+    return (
+      <View style={{padding: 10}}>
+        <Text style={{ padding: 10}}>Current Location</Text>
+        <TextInput
+          style={{height: 40}}
+          placeholder="Santa Cruz"
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.text}
+        />
+        <Text style={{padding: 10, fontSize: 42}}>
+          {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
+        </Text>
+      </View>
+    );
+  }
+}
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -19,6 +42,8 @@ class HomeScreen extends React.Component {
       photoDists: [],
       distVals:[],
       isLoading: true,
+      locText: '',
+      inputText: '',
     }
     this.calculateDistance = this.calculateDistance.bind(this);
   }
@@ -101,11 +126,11 @@ class HomeScreen extends React.Component {
     await this.getPhotoCoords();
 
     for(var i = 0; i < this.state.photoDists.length; i++){
-      calculated_dist = getDistance(
+      calculated_dist = await getDistance(
         {latitude: this.state.latitude, longitude: this.state.longitude },
         {latitude: this.state.photoDists[i][1], longitude: this.state.photoDists[i][2]}
       );
-      calculated_dist = convertDistance(calculated_dist, 'mi');
+      calculated_dist = await convertDistance(calculated_dist, 'mi');
       let distValsHistory = [...this.state.distVals];
       distValsHistory.push([this.state.photoDists[i][0], calculated_dist])
       this.setState({
@@ -119,10 +144,13 @@ class HomeScreen extends React.Component {
     });
   }
 
-  getCoords(){
-    var address = '400+Beach+St,';
-    var apiCall = 'https://maps.googleapis.com/maps/api/geocode/json?address='+address+'Santa+Cruz,+CA&key=AIzaSyBv__05nyUa8JC7A1WRZ4KCDJnfYP5Bt5o';
-    return fetch(apiCall)
+  async getCoords(){
+    var address = '400+Beach+St';
+    if(this.state.text === "1156 High St") {
+      address = '1156+High+St';
+    }
+    var apiCall = 'https://maps.googleapis.com/maps/api/geocode/json?address='+address+',Santa+Cruz,+CA&key=AIzaSyBv__05nyUa8JC7A1WRZ4KCDJnfYP5Bt5o';
+    await fetch(apiCall)
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
@@ -166,7 +194,7 @@ class HomeScreen extends React.Component {
   render(){
     if(this.state.isLoading){
       return(
-        <View style={{flex: 1, padding: 50}}>
+        <View style={{padding: 50}}>
           <ActivityIndicator/>
         </View>
       )
@@ -176,9 +204,26 @@ class HomeScreen extends React.Component {
       return <Button key={b.key} title={b.text} onPress={() => this.props.navigation.navigate(b.name)} />;
     });
 
+    console.log('text input');
+    console.log(this.state.inputText);
+    console.log('text input on submit');
+    console.log(this.state.locText);
+
     return(
       <View style={{ flex: 1, alignItems: 'center' }}>
-        <Text style={{ padding: 20}}>Current Location: Santa Cruz, CA </Text>
+        <View style={{padding: 10}}>
+          <Text style={{ padding: 10}}>Current Location</Text>
+          <TextInput
+            style={{height: 40}}
+            placeholder="Santa Cruz"
+            onChangeText={(text) => this.setState({inputText: text})}
+            onSubmitEditing={a => {
+              console.log(`onSubmitEditing: ${this.state.inputText}`),
+              this.setState({locText: this.state.inputText})
+            }}
+            value={this.state.loc}
+          />
+        </View>
         {photoButtons}
       </View>
     );
