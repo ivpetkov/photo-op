@@ -42,7 +42,7 @@ class HomeScreen extends React.Component {
       photoDists: [],
       distVals:[],
       isLoading: true,
-      locText: '',
+      locText: '1156 High St',
     }
     this.calculateDistance = this.calculateDistance.bind(this);
   }
@@ -50,16 +50,6 @@ class HomeScreen extends React.Component {
   async componentDidMount(){
     await this.calculateDistance();
   }
-
-  // async componentDidUpdate(prevProps, prevState){
-  //   if(this.state.locText !== this.prevState.locText) {
-  //     this.setState({
-  //       isLoading: true
-  //     });
-  //     await this.getCoords();
-  //     await this.calculateDistance();
-  //   }
-  // }
 
   async getPhotoCoords(){
     await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=2531+W+Cliff+Dr,+Santa+Cruz,+CA&key=AIzaSyBv__05nyUa8JC7A1WRZ4KCDJnfYP5Bt5o')
@@ -183,14 +173,12 @@ class HomeScreen extends React.Component {
     });
   }
 
+  parseAddress(address) {
+    return address.split(' ').join('+');
+  }
+
   async getCoords(){
-    var address = '400+Beach+St';
-    if(this.state.locText === "1156 High St") {
-      address = '1156+High+St';
-    }
-    if(this.state.locText === "2531 W Cliff Dr") {
-      address = '2531+W+Cliff+Dr';
-    }
+    var address = this.parseAddress(this.state.locText);
     var apiCall = 'https://maps.googleapis.com/maps/api/geocode/json?address='+address+',Santa+Cruz,+CA&key=AIzaSyBv__05nyUa8JC7A1WRZ4KCDJnfYP5Bt5o';
     await fetch(apiCall)
     .then((response) => response.json())
