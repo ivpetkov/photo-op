@@ -42,7 +42,7 @@ class HomeScreen extends React.Component {
       photoDists: [],
       distVals:[],
       isLoading: true,
-      locText: '',
+      locText: '400+Beach+St',
       inputText: '',
     }
     this.calculateDistance = this.calculateDistance.bind(this);
@@ -51,6 +51,16 @@ class HomeScreen extends React.Component {
   async componentDidMount(){
     await this.calculateDistance();
   }
+
+  // async componentDidUpdate(prevProps, prevState){
+  //   if(this.state.locText !== this.prevState.locText) {
+  //     this.setState({
+  //       isLoading: true
+  //     });
+  //     await this.getCoords();
+  //     await this.calculateDistance();
+  //   }
+  // }
 
   async getPhotoCoords(){
     await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=2531+W+Cliff+Dr,+Santa+Cruz,+CA&key=AIzaSyBv__05nyUa8JC7A1WRZ4KCDJnfYP5Bt5o')
@@ -122,6 +132,9 @@ class HomeScreen extends React.Component {
   }
 
   async calculateDistance(){
+    this.setState({
+      isLoading: true
+    });
     await this.getCoords();
     await this.getPhotoCoords();
 
@@ -144,10 +157,40 @@ class HomeScreen extends React.Component {
     });
   }
 
+  async calculateNewDistance(){
+    this.setState({
+      isLoading: true
+    });
+    await this.getCoords();
+    this.setState({
+      distVals: []
+    });
+    for(var i = 0; i < this.state.photoDists.length; i++){
+      calculated_dist = await getDistance(
+        {latitude: this.state.latitude, longitude: this.state.longitude },
+        {latitude: this.state.photoDists[i][1], longitude: this.state.photoDists[i][2]}
+      );
+      calculated_dist = await convertDistance(calculated_dist, 'mi');
+      let distValsHistory = [...this.state.distVals];
+      distValsHistory.push([this.state.photoDists[i][0], calculated_dist])
+      this.setState({
+        distVals: distValsHistory
+      });
+    }
+    await this.sortLocations();
+    await this.toArrayOfObjects();
+    this.setState({
+      isLoading: false
+    });
+  }
+
   async getCoords(){
     var address = '400+Beach+St';
-    if(this.state.text === "1156 High St") {
+    if(this.state.locText === "1156 High St") {
       address = '1156+High+St';
+    }
+    if(this.state.locText === "2531 W Cliff Dr") {
+      address = '2531+W+Cliff+Dr';
     }
     var apiCall = 'https://maps.googleapis.com/maps/api/geocode/json?address='+address+',Santa+Cruz,+CA&key=AIzaSyBv__05nyUa8JC7A1WRZ4KCDJnfYP5Bt5o';
     await fetch(apiCall)
@@ -219,9 +262,10 @@ class HomeScreen extends React.Component {
             onChangeText={(text) => this.setState({inputText: text})}
             onSubmitEditing={a => {
               console.log(`onSubmitEditing: ${this.state.inputText}`),
-              this.setState({locText: this.state.inputText})
+              this.setState({locText: this.state.inputText}),
+              this.calculateNewDistance()
             }}
-            value={this.state.loc}
+            value={this.state.inputText}
           />
         </View>
         {photoButtons}
