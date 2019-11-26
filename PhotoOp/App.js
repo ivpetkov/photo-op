@@ -29,7 +29,7 @@ const AppNavigator = createStackNavigator(
     Sea,
   },
   {
-      initialRouteName: 'SignUp'
+      initialRouteName: 'Login'
   }
 )
 

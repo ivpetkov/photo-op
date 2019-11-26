@@ -3,6 +3,7 @@ import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityI
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { getDistance, convertDistance } from 'geolib';
+import firebase from 'react-native-firebase';
 
 export default class Home extends React.Component {
   static navigationOptions = {
@@ -21,6 +22,13 @@ export default class Home extends React.Component {
       locText: '1156 High St',
     }
     this.calculateDistance = this.calculateDistance.bind(this);
+  }
+
+  handleSignOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => this.props.navigation.navigate('Login'))
   }
 
   async componentDidMount(){
@@ -231,6 +239,9 @@ export default class Home extends React.Component {
           />
         </View>
         {photoButtons}
+        <View>
+          <Button key="signout" title="Sign Out" onPress={this.handleSignOut} />
+        </View>
       </View>
     );
   }
