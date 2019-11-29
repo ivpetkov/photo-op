@@ -12,41 +12,70 @@ export default class Favorites extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      locName: '',
-      locAddress: '',
-      locPhotoRef: '',
       isLoading: true,
+      dataSource: [],
+      currLocInfo: [],
     }
+    this.itemsRef = firebase.database().ref('FavoritesList/');
+
   }
 
-  componentDidMount(){
-    this.initializeInfo();
+  async componentDidMount(){
+    await this.listenForItems(this.itemsRef);
   }
 
-  initializeInfo() {
-    // var name = Global.component.state.currLocInfo[0];
-    // var address = Global.component.state.currLocInfo[1];
-    // var photoRef = Global.component.state.currLocInfo[2];
+  async listenForItems(itemsRef) {
     this.setState({
-      // locName: name,
-      // locAddress: address,
-      // locPhotoRef: photoRef,
-      isLoading: false,
+      isLoading: true
     });
+    await itemsRef.on('value', (snap) => {
+      var items = [];
+      snap.forEach((child) => {
+        items.push({
+          name: child.val().name,
+          address: child.val().address,
+          photoRef: child.val().photoRef,
+          _key: child.key
+        });
+      });
+      let dataSourceHistory = [...this.state.dataSource];
+      dataSourceHistory.push(items)
+      this.setState({
+        dataSource: dataSourceHistory,
+      });
+      console.log("dataSource", this.state.dataSource);
+      this.toArrayOfObjects();
+      this.setState({
+        isLoading: false,
+      });
+    });
+
   }
 
-  writeUserData(name, address, photoRef){
-    firebase.database().ref('FavoritesList/').push({
-        name,
-        photoRef,
-        address
-    }).then((data)=>{
-        //success callback
-        console.log('data ' , data)
-    }).catch((error)=>{
-        //error callback
-        console.log('error ' , error)
-    })
+  async toArrayOfObjects(){
+    var dataSourceObjectsArray = [];
+    for(var i = 0; i < this.state.dataSource[0].length; i++) {
+        var obj = {
+          key: i+1,
+          locName: this.state.dataSource[0][i].name,
+          locAddress: this.state.dataSource[0][i].address,
+          locPhotoRef: this.state.dataSource[0][i].photoRef,
+        }
+        console.log("name", this.state.dataSource[0][i].name);
+        dataSourceObjectsArray.push(obj);
+    }
+    this.setState({
+      dataSource: dataSourceObjectsArray
+    });
+    console.log("dataSource second time", this.state.dataSource);
+  }
+
+  updateCurrLocInfo(name, address, photoRef) {
+    var newLocInfo = [name, address, photoRef];
+    this.setState({
+      currLocInfo: newLocInfo
+    });
+    this.props.navigation.navigate('FavoritesDetails');
   }
 
   render() {
@@ -58,11 +87,19 @@ export default class Favorites extends React.Component {
       )
     }
 
+    Global.component = this;
+    // const photoButtons = this.state.dataSource.map(b => {
+    //   console.log("b name", typeof b.locName);
+    //   return;
+    // });
+    const photoButtons = this.state.dataSource.map(b => {
+      return <Button key={b.key} title={b.locName} onPress={() => this.updateCurrLocInfo(b.locName, b.locAddress, b.locPhotoRef)} />;
+    });
+
     return (
-      <View>
-        <Text style={styles.text}>bfkbdghdfhj</Text>
-        <Text style={styles.text}>bgdfjgjhgdf</Text>
-      </View>
+      <ScrollView>
+        {photoButtons}
+      </ScrollView>
     );
   }
 }

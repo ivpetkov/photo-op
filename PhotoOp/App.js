@@ -10,6 +10,7 @@ import Login from './src/login/Login.js'
 import Home from './src/Home.js'
 import LocationDetails from './src/LocationDetails.js'
 import Favorites from './src/Favorites.js'
+import FavoritesDetails from './src/FavoritesDetails.js'
 
 const AppNavigator = createStackNavigator(
   {
@@ -19,6 +20,7 @@ const AppNavigator = createStackNavigator(
     Home,
     LocationDetails,
     Favorites,
+    FavoritesDetails,
   },
   {
       initialRouteName: 'Home'
