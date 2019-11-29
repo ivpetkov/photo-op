@@ -27,14 +27,25 @@ export default class FavoritesDetails extends React.Component {
     var name = Global.component.state.currLocInfo[0];
     var address = Global.component.state.currLocInfo[1];
     var photoRef = Global.component.state.currLocInfo[2];
+    var dbKey = Global.component.state.currLocInfo[3];
     this.setState({
       locName: name,
       locAddress: address,
       locPhotoRef: photoRef,
+      locKey: dbKey,
       isLoading: false,
     });
   }
 
+  deleteData(key){
+    this.setState({
+      isLoading: true,
+    });
+    firebase.database().ref('FavoritesList/').child(key).remove();
+    this.setState({
+      isLoading: false,
+    });
+  }
 
   render() {
     if(this.state.isLoading){
@@ -55,6 +66,7 @@ export default class FavoritesDetails extends React.Component {
               source={{uri: 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=300&photoreference='+this.state.locPhotoRef+'&key=AIzaSyBv__05nyUa8JC7A1WRZ4KCDJnfYP5Bt5o'}}
             />
             <Text style={styles.text}>{this.state.locAddress}</Text>
+            <Button key="favorites" title="Remove from favorites" onPress={() => this.deleteData(this.state.locKey)}/>
           </View>
         </ScrollView>
       </View>

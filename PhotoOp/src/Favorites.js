@@ -59,6 +59,7 @@ export default class Favorites extends React.Component {
           locName: this.state.dataSource[0][i].name,
           locAddress: this.state.dataSource[0][i].address,
           locPhotoRef: this.state.dataSource[0][i].photoRef,
+          dbKey: this.state.dataSource[0][i]._key,
         }
         console.log("name", this.state.dataSource[0][i].name);
         dataSourceObjectsArray.push(obj);
@@ -69,8 +70,8 @@ export default class Favorites extends React.Component {
     console.log("dataSource second time", this.state.dataSource);
   }
 
-  updateCurrLocInfo(name, address, photoRef) {
-    var newLocInfo = [name, address, photoRef];
+  updateCurrLocInfo(name, address, photoRef, dbKey) {
+    var newLocInfo = [name, address, photoRef, dbKey];
     this.setState({
       currLocInfo: newLocInfo
     });
@@ -89,7 +90,7 @@ export default class Favorites extends React.Component {
     Global.component = this;
 
     const photoButtons = this.state.dataSource.map(b => {
-      return <Button key={b.key} title={b.locName} onPress={() => this.updateCurrLocInfo(b.locName, b.locAddress, b.locPhotoRef)} />;
+      return <Button key={b.key} title={b.locName} onPress={() => this.updateCurrLocInfo(b.locName, b.locAddress, b.locPhotoRef, b.dbKey)} />;
     });
 
     return (
