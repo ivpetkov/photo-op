@@ -9,6 +9,7 @@ import SignUp from './src/login/SignUp.js'
 import Login from './src/login/Login.js'
 import Home from './src/Home.js'
 import LocationDetails from './src/LocationDetails.js'
+import Favorites from './src/Favorites.js'
 
 const AppNavigator = createStackNavigator(
   {
@@ -17,6 +18,7 @@ const AppNavigator = createStackNavigator(
     Login,
     Home,
     LocationDetails,
+    Favorites,
   },
   {
       initialRouteName: 'Home'
