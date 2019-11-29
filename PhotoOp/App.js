@@ -30,3 +30,10 @@ export default class App extends React.Component {
     return <AppContainer />;
   }
 }
+
+var config = {
+    databaseURL: "https://photo-op-2.firebaseio.com/likedPlaces/Jr49muZZibGVa3LbjoVi",
+    projectId: "photo-op-2",
+};
+
+firebase.initializeApp(config);

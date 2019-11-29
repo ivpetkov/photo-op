@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator } from 'react-native'
+import firebase from 'react-native-firebase'
 
 import Global from './Global.js';
 
@@ -34,6 +35,20 @@ export default class LocationDetails extends React.Component {
     });
   }
 
+  writeUserData(name, address, photoRef){
+    firebase.database().ref('FavoritesList/').push({
+        name,
+        photoRef,
+        address
+    }).then((data)=>{
+        //success callback
+        console.log('data ' , data)
+    }).catch((error)=>{
+        //error callback
+        console.log('error ' , error)
+    })
+  }
+
   render() {
     if(this.state.isLoading){
       return(
@@ -53,6 +68,7 @@ export default class LocationDetails extends React.Component {
               source={{uri: 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=300&photoreference='+this.state.locPhotoRef+'&key=AIzaSyBv__05nyUa8JC7A1WRZ4KCDJnfYP5Bt5o'}}
             />
             <Text style={styles.text}>{this.state.locAddress}</Text>
+            <Button key="favorites" title="Add to favorites" onPress={() => this.writeUserData(this.state.locName, this.state.locAddress, this.state.locPhotoRef)}/>
           </View>
         </ScrollView>
       </View>
