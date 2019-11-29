@@ -1,10 +1,9 @@
 import * as React from 'react'
-import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator } from 'react-native'
+import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator, Picker } from 'react-native'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { getDistance, convertDistance } from 'geolib'
 import firebase from 'react-native-firebase'
-
 import Global from './Global.js';
 
 export default class Home extends React.Component {
@@ -23,6 +22,8 @@ export default class Home extends React.Component {
       isLoading: true,
       locText: '1156 High St',
       currLocInfo: [],
+      filter: 'all',
+      filteredDistVals: [],
     }
     this.calculateDistance = this.calculateDistance.bind(this);
   }
@@ -40,31 +41,33 @@ export default class Home extends React.Component {
 
   async getPhotoCoords(){
     var photoLocations = [
-      'Natural%20Bridges%20State%20Beach',
-      'Porter%20Squiggle',
-      'Walton%20Lighthouse',
-      "Mitchell's%20Cove%20Beach",
-      'Wilder%20Ranch%20State%20Park',
-      'Jogging%20Track%20Santa%20Cruz',
-      'Cliff%20Drive%20Vista%20Point',
-      'Cypress%20Park%20Vista%20Point',
-      'Neary%20Lagoon%20Park',
-      'Santa%20Cruz%20Wharf',
-      'Mission%20Santa%20Cruz',
-      'Westlake%20Park%20Santa%20Cruz',
-      'Antonelli%20Pond%20Santa%20Cruz',
-      'Sergeant%20Derby%20Park',
-      'Harvey%20West%20Park',
-      'Evergreen%20Cemetary',
-      'Pogonip%20Historic%20Lime%20Kiln',
-      'Koi%20Pond%20SantaCruz',
-      'Pipeline%20Trail%20Overlook',
-      'Garden%20of%20Eden'
+      ['Natural%20Bridges%20State%20Beach%20Santa%20Cruz', 'beach'],
+      ['Porter%20Squiggle%20Santa%20Cruz', 'hidden'],
+      ['Walton%20Lighthouse%20Santa%20Cruz', 'beach'],
+      ["Mitchell's%20Cove%20Beach%20Santa%20Cruz", 'beach'],
+      ['Wilder%20Ranch%20State%20Park%20Santa%20Cruz', 'beach'],
+      ['Jogging%20Track%20Santa%20Cruz', 'vista'],
+      ['Cliff%20Drive%20Vista%20Point%20Santa%20Cruz', 'vista'],
+      // 'Neary%20Lagoon%20Park%20Santa%20Cruz',
+      // 'Santa%20Cruz%20Wharf%20Santa%20Cruz',
+      // 'Mission%20Santa%20Cruz%20Santa%20Cruz',
+      // 'Westlake%20Park%20Santa%20Cruz',
+      // 'Antonelli%20Pond%20Santa%20Cruz',
+      // 'Sergeant%20Derby%20Park%20Santa%20Cruz',
+      // 'Harvey%20West%20Park%20Santa%20Cruz',
+      // 'Evergreen%20Cemetary%20Santa%20Cruz',
+      ['Pogonip%20Historic%20Lime%20Kiln%20Santa%20Cruz', 'hidden'],
+      // 'Koi%20Pond%20SantaCruz%20Santa%20Cruz',
+      ['Pipeline%20Trail%20Overlook%20Santa%20Cruz', 'vista'],
+      ['Garden%20of%20Eden%20Santa%20Cruz', 'hidden'],
+      // 'Empire%20Cave%20Santa%20Cruz',
+      // 'Crown%20Meadow%20Santa%20Cruz',
+      ['The%20Painted%20Barrels%20Santa%20Cruz', 'hidden'],
     ];
 
     var id = '';
     for(var i=0; i < photoLocations.length; i++) {
-      id = photoLocations[i];
+      id = photoLocations[i][0];
       await fetch('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input='+id+'&inputtype=textquery&fields=photos,formatted_address,name,geometry&key=AIzaSyBv__05nyUa8JC7A1WRZ4KCDJnfYP5Bt5o')
       .then((response) => response.json())
       .then((responseJson) => {
@@ -73,9 +76,10 @@ export default class Home extends React.Component {
         var longitude = responseJson.candidates[0].geometry.location.lng;
         var address = responseJson.candidates[0].formatted_address;
         var photoRef = responseJson.candidates[0].photos[0].photo_reference;
+        var type = photoLocations[i][1];
 
         let photoDistsHistory = [...this.state.photoDists];
-        photoDistsHistory.push([locationName, latitude, longitude, address, photoRef])
+        photoDistsHistory.push([locationName, latitude, longitude, address, photoRef, type])
         this.setState({
           photoDists: photoDistsHistory
         });
@@ -100,7 +104,7 @@ export default class Home extends React.Component {
       );
       calculated_dist = await convertDistance(calculated_dist, 'mi');
       let distValsHistory = [...this.state.distVals];
-      distValsHistory.push([this.state.photoDists[i][0], calculated_dist, this.state.photoDists[i][3],  this.state.photoDists[i][4]])
+      distValsHistory.push([this.state.photoDists[i][0], calculated_dist, this.state.photoDists[i][3], this.state.photoDists[i][4], this.state.photoDists[i][5]])
       this.setState({
         distVals: distValsHistory
       });
@@ -127,7 +131,7 @@ export default class Home extends React.Component {
       );
       calculated_dist = await convertDistance(calculated_dist, 'mi');
       let distValsHistory = [...this.state.distVals];
-      distValsHistory.push([this.state.photoDists[i][0], calculated_dist, this.state.photoDists[i][3],  this.state.photoDists[i][4]])
+      distValsHistory.push([this.state.photoDists[i][0], calculated_dist, this.state.photoDists[i][3],  this.state.photoDists[i][4], this.state.photoDists[i][5]])
       this.setState({
         distVals: distValsHistory
       });
@@ -181,6 +185,7 @@ export default class Home extends React.Component {
           locName: this.state.distVals[i][0],
           locAddress: this.state.distVals[i][2],
           locPhotoRef: this.state.distVals[i][3],
+          locType: this.state.distVals[i][4],
         }
         distValsObjectsArray.push(obj);
     }
@@ -195,6 +200,40 @@ export default class Home extends React.Component {
       currLocInfo: newLocInfo
     });
     this.props.navigation.navigate('LocationDetails');
+  }
+
+  async filterLocByType(itemValue){
+    this.setState({
+      isLoading: true,
+      filter: itemValue,
+    });
+    if(itemValue === 'all') {
+      await this.calculateNewDistance();
+    }
+    if(itemValue !== 'all') {
+      this.setState({
+        distVals: []
+      });
+      for(var i = 0; i < this.state.photoDists.length; i++){
+        if(this.state.photoDists[i][5] === itemValue) {
+          calculated_dist = await getDistance(
+            {latitude: this.state.latitude, longitude: this.state.longitude },
+            {latitude: this.state.photoDists[i][1], longitude: this.state.photoDists[i][2]}
+          );
+          calculated_dist = await convertDistance(calculated_dist, 'mi');
+          let distValsHistory = [...this.state.distVals];
+          distValsHistory.push([this.state.photoDists[i][0], calculated_dist, this.state.photoDists[i][3], this.state.photoDists[i][4], this.state.photoDists[i][5]])
+          this.setState({
+            distVals: distValsHistory
+          });
+        }
+      }
+      await this.sortLocations();
+      await this.toArrayOfObjects();
+    }
+    this.setState({
+      isLoading: false
+    });
   }
 
   render(){
@@ -213,13 +252,12 @@ export default class Home extends React.Component {
     });
 
     return(
-      <View style={{ flex: 1, alignItems: 'center' }}>
+      <View style={styles.container}>
         <View style={{padding: 10}}>
           <Button key="signout" title="Sign Out" onPress={this.handleSignOut} />
-          <Text style={{ padding: 10}}>Current Location</Text>
           <TextInput
-            style={{height: 40}}
-            placeholder="Santa Cruz"
+            style={styles.textInput}
+            placeholder="Enter address"
             onChangeText={(text) => this.setState({locText: text})}
             onSubmitEditing={a => {
               console.log(`onSubmitEditing: ${this.state.inputText}`),
@@ -228,10 +266,37 @@ export default class Home extends React.Component {
             value={this.state.locText}
           />
         </View>
-        <ScrollView>
+        <View>
           {photoButtons}
-        </ScrollView>
+        </View>
+        <View style={{padding: 10, position: 'absolute', bottom: 200}}>
+          <Picker
+            selectedValue={this.state.filter}
+            style={{height: 50, width: 150}}
+            onValueChange={(itemValue, itemIndex) =>
+              this.filterLocByType(itemValue)
+            }>
+            <Picker.Item label="All" value="all" />
+            <Picker.Item label="Beach" value="beach" />
+            <Picker.Item label="Vista Point" value="vista" />
+            <Picker.Item label="Hidden Gem" value="hidden" />
+          </Picker>
+        </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center'
+  },
+  textInput: {
+    height: 40,
+    width: 150,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginTop: 8
+  }
+})

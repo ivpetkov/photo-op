@@ -4,7 +4,6 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import firebase from 'react-native-firebase'
 
-// import the different screens
 import Loading from './src/login/Loading.js'
 import SignUp from './src/login/SignUp.js'
 import Login from './src/login/Login.js'
