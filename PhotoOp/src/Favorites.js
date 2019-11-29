@@ -49,7 +49,6 @@ export default class Favorites extends React.Component {
         isLoading: false,
       });
     });
-
   }
 
   async toArrayOfObjects(){
@@ -88,10 +87,7 @@ export default class Favorites extends React.Component {
     }
 
     Global.component = this;
-    // const photoButtons = this.state.dataSource.map(b => {
-    //   console.log("b name", typeof b.locName);
-    //   return;
-    // });
+
     const photoButtons = this.state.dataSource.map(b => {
       return <Button key={b.key} title={b.locName} onPress={() => this.updateCurrLocInfo(b.locName, b.locAddress, b.locPhotoRef)} />;
     });
