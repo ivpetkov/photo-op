@@ -256,8 +256,8 @@ export default class Home extends React.Component {
   render(){
     if(this.state.isLoading){
       return(
-        <View style={{padding: 50}}>
-          <ActivityIndicator/>
+        <View style={styles.container}>
+          <ActivityIndicator size="large" />
         </View>
       )
     }
@@ -308,6 +308,7 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
     alignItems: 'center'
   },
   textInput: {

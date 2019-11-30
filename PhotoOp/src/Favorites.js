@@ -88,8 +88,8 @@ class Favorites extends React.Component {
   render() {
     if(this.state.isLoading == true || this.props.isFocused == false){
       return(
-        <View style={{padding: 50}}>
-          <ActivityIndicator/>
+        <View style={styles.container}>
+          <ActivityIndicator size="large" />
         </View>
       )
     }

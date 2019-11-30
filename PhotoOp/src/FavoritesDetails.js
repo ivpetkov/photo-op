@@ -51,8 +51,8 @@ export default class FavoritesDetails extends React.Component {
   render() {
     if(this.state.isLoading){
       return(
-        <View style={{padding: 50}}>
-          <ActivityIndicator/>
+        <View style={styles.container}>
+          <ActivityIndicator size="large" />
         </View>
       )
     }
