@@ -4,7 +4,7 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { getDistance, convertDistance } from 'geolib'
 import firebase from 'react-native-firebase'
-import Global from './Global.js';
+import Global from './Global.js'
 
 export default class Home extends React.Component {
   static navigationOptions = {
@@ -37,6 +37,7 @@ export default class Home extends React.Component {
 
   async componentDidMount(){
     await this.calculateDistance();
+    console.log(firebase.auth().currentUser);
   }
 
   async getPhotoCoords(){
@@ -208,9 +209,25 @@ export default class Home extends React.Component {
       filter: itemValue,
     });
     if(itemValue === 'all') {
-      await this.calculateNewDistance();
+      this.setState({
+        distVals: []
+      });
+      for(var i = 0; i < this.state.photoDists.length; i++){
+        calculated_dist = await getDistance(
+          {latitude: this.state.latitude, longitude: this.state.longitude },
+          {latitude: this.state.photoDists[i][1], longitude: this.state.photoDists[i][2]}
+        );
+        calculated_dist = await convertDistance(calculated_dist, 'mi');
+        let distValsHistory = [...this.state.distVals];
+        distValsHistory.push([this.state.photoDists[i][0], calculated_dist, this.state.photoDists[i][3], this.state.photoDists[i][4], this.state.photoDists[i][5]])
+        this.setState({
+          distVals: distValsHistory
+        });
+      }
+      await this.sortLocations();
+      await this.toArrayOfObjects();
     }
-    if(itemValue !== 'all') {
+    if(itemValue === 'beach' || itemValue === 'vista' || itemValue === 'hidden') {
       this.setState({
         distVals: []
       });

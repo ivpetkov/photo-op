@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator } from 'react-native'
 import firebase from 'react-native-firebase'
-
-import Global from './Global.js';
+import Global from './Global.js'
 
 export default class FavoritesDetails extends React.Component {
   static navigationOptions = {
@@ -37,11 +36,13 @@ export default class FavoritesDetails extends React.Component {
     });
   }
 
-  deleteData(key){
+  async deleteData(key){
     this.setState({
       isLoading: true,
     });
-    firebase.database().ref('FavoritesList/').child(key).remove();
+    var uid = firebase.auth().currentUser.uid;
+    await firebase.database().ref('/users/'+uid+'/FavoritesList/').child(key).remove();
+    this.props.navigation.navigate('Home');
     this.setState({
       isLoading: false,
     });

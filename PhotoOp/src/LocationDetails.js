@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator } from 'react-native'
 import firebase from 'react-native-firebase'
-
-import Global from './Global.js';
+import Global from './Global.js'
 
 export default class LocationDetails extends React.Component {
   static navigationOptions = {
@@ -36,7 +35,8 @@ export default class LocationDetails extends React.Component {
   }
 
   writeUserData(name, address, photoRef){
-    firebase.database().ref('FavoritesList/').push({
+    var uid = firebase.auth().currentUser.uid;
+    firebase.database().ref('/users/'+uid+'/FavoritesList/').push({
         name,
         photoRef,
         address

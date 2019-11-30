@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator } from 'react-native'
 import firebase from 'react-native-firebase'
-
-import Global from './Global.js';
+import Global from './Global.js'
 
 export default class Favorites extends React.Component {
   static navigationOptions = {
@@ -16,7 +15,8 @@ export default class Favorites extends React.Component {
       dataSource: [],
       currLocInfo: [],
     }
-    this.itemsRef = firebase.database().ref('FavoritesList/');
+    var uid = firebase.auth().currentUser.uid;
+    this.itemsRef = firebase.database().ref('/users/'+uid+'/FavoritesList/');
 
   }
 
@@ -70,10 +70,10 @@ export default class Favorites extends React.Component {
     console.log("dataSource second time", this.state.dataSource);
   }
 
-  updateCurrLocInfo(name, address, photoRef, dbKey) {
+  async updateCurrLocInfo(name, address, photoRef, dbKey) {
     var newLocInfo = [name, address, photoRef, dbKey];
     this.setState({
-      currLocInfo: newLocInfo
+      currLocInfo: newLocInfo,
     });
     this.props.navigation.navigate('FavoritesDetails');
   }
