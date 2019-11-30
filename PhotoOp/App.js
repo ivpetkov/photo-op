@@ -12,6 +12,8 @@ import LocationDetails from './src/LocationDetails.js'
 import Favorites from './src/Favorites.js'
 import FavoritesDetails from './src/FavoritesDetails.js'
 
+console.disableYellowBox = true; 
+
 const AppNavigator = createStackNavigator(
   {
     Loading,
