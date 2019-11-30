@@ -9,6 +9,8 @@ import SignUp from './src/login/SignUp.js'
 import Login from './src/login/Login.js'
 import Home from './src/Home.js'
 import LocationDetails from './src/LocationDetails.js'
+import Favorites from './src/Favorites.js'
+import FavoritesDetails from './src/FavoritesDetails.js'
 
 const AppNavigator = createStackNavigator(
   {
@@ -17,9 +19,11 @@ const AppNavigator = createStackNavigator(
     Login,
     Home,
     LocationDetails,
+    Favorites,
+    FavoritesDetails,
   },
   {
-      initialRouteName: 'Home'
+      initialRouteName: 'Login'
   }
 )
 
@@ -30,3 +34,10 @@ export default class App extends React.Component {
     return <AppContainer />;
   }
 }
+
+var config = {
+    databaseURL: "https://photo-op-2.firebaseio.com/likedPlaces/Jr49muZZibGVa3LbjoVi",
+    projectId: "photo-op-2",
+};
+
+firebase.initializeApp(config);

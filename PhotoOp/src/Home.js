@@ -4,7 +4,7 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { getDistance, convertDistance } from 'geolib'
 import firebase from 'react-native-firebase'
-import Global from './Global.js';
+import Global from './Global.js'
 
 export default class Home extends React.Component {
   static navigationOptions = {
@@ -37,6 +37,7 @@ export default class Home extends React.Component {
 
   async componentDidMount(){
     await this.calculateDistance();
+    console.log(firebase.auth().currentUser);
   }
 
   async getPhotoCoords(){
@@ -49,7 +50,7 @@ export default class Home extends React.Component {
       ['Jogging%20Track%20Santa%20Cruz', 'vista'],
       ['Cliff%20Drive%20Vista%20Point%20Santa%20Cruz', 'vista'],
       // 'Neary%20Lagoon%20Park%20Santa%20Cruz',
-      // 'Santa%20Cruz%20Wharf%20Santa%20Cruz',
+      ['Santa%20Cruz%20Wharf%20Santa%20Cruz', 'vista'],
       // 'Mission%20Santa%20Cruz%20Santa%20Cruz',
       // 'Westlake%20Park%20Santa%20Cruz',
       // 'Antonelli%20Pond%20Santa%20Cruz',
@@ -57,10 +58,10 @@ export default class Home extends React.Component {
       // 'Harvey%20West%20Park%20Santa%20Cruz',
       // 'Evergreen%20Cemetary%20Santa%20Cruz',
       ['Pogonip%20Historic%20Lime%20Kiln%20Santa%20Cruz', 'hidden'],
-      // 'Koi%20Pond%20SantaCruz%20Santa%20Cruz',
+      ['Koi%20Pond%20SantaCruz%20Santa%20Cruz', 'hidden'],
       ['Pipeline%20Trail%20Overlook%20Santa%20Cruz', 'vista'],
       ['Garden%20of%20Eden%20Santa%20Cruz', 'hidden'],
-      // 'Empire%20Cave%20Santa%20Cruz',
+      ['Empire%20Cave%20Santa%20Cruz', 'hidden'],
       // 'Crown%20Meadow%20Santa%20Cruz',
       ['The%20Painted%20Barrels%20Santa%20Cruz', 'hidden'],
     ];
@@ -208,9 +209,25 @@ export default class Home extends React.Component {
       filter: itemValue,
     });
     if(itemValue === 'all') {
-      await this.calculateNewDistance();
+      this.setState({
+        distVals: []
+      });
+      for(var i = 0; i < this.state.photoDists.length; i++){
+        calculated_dist = await getDistance(
+          {latitude: this.state.latitude, longitude: this.state.longitude },
+          {latitude: this.state.photoDists[i][1], longitude: this.state.photoDists[i][2]}
+        );
+        calculated_dist = await convertDistance(calculated_dist, 'mi');
+        let distValsHistory = [...this.state.distVals];
+        distValsHistory.push([this.state.photoDists[i][0], calculated_dist, this.state.photoDists[i][3], this.state.photoDists[i][4], this.state.photoDists[i][5]])
+        this.setState({
+          distVals: distValsHistory
+        });
+      }
+      await this.sortLocations();
+      await this.toArrayOfObjects();
     }
-    if(itemValue !== 'all') {
+    if(itemValue === 'beach' || itemValue === 'vista' || itemValue === 'hidden') {
       this.setState({
         distVals: []
       });
@@ -254,6 +271,7 @@ export default class Home extends React.Component {
     return(
       <View style={styles.container}>
         <View style={{padding: 10}}>
+        <Button key="favorites" title="Go to favorites" onPress={() => this.props.navigation.navigate('Favorites')} />
           <Button key="signout" title="Sign Out" onPress={this.handleSignOut} />
           <TextInput
             style={styles.textInput}
@@ -266,9 +284,9 @@ export default class Home extends React.Component {
             value={this.state.locText}
           />
         </View>
-        <View>
+        <ScrollView style={styles.scrollView}>
           {photoButtons}
-        </View>
+        </ScrollView>
         <View style={{padding: 10, position: 'absolute', bottom: 200}}>
           <Picker
             selectedValue={this.state.filter}
@@ -298,5 +316,8 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     marginTop: 8
+  },
+  scrollView: {
+    maxHeight: 450,
   }
 })
