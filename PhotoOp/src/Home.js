@@ -32,7 +32,7 @@ export default class Home extends React.Component {
     firebase
       .auth()
       .signOut()
-      .then(() => this.props.navigation.navigate('Login'))
+      .then(() => this.props.navigation.navigate('Loading'))
   }
 
   async componentDidMount(){
@@ -49,20 +49,20 @@ export default class Home extends React.Component {
       ['Wilder%20Ranch%20State%20Park%20Santa%20Cruz', 'beach'],
       ['Jogging%20Track%20Santa%20Cruz', 'vista'],
       ['Cliff%20Drive%20Vista%20Point%20Santa%20Cruz', 'vista'],
-      // 'Neary%20Lagoon%20Park%20Santa%20Cruz',
+      ['Neary%20Lagoon%20Park%20Santa%20Cruz', ''],
       ['Santa%20Cruz%20Wharf%20Santa%20Cruz', 'vista'],
-      // 'Mission%20Santa%20Cruz%20Santa%20Cruz',
-      // 'Westlake%20Park%20Santa%20Cruz',
-      // 'Antonelli%20Pond%20Santa%20Cruz',
-      // 'Sergeant%20Derby%20Park%20Santa%20Cruz',
-      // 'Harvey%20West%20Park%20Santa%20Cruz',
-      // 'Evergreen%20Cemetary%20Santa%20Cruz',
+      ['Mission%20Santa%20Cruz%20Santa%20Cruz', ''],
+      ['Westlake%20Park%20Santa%20Cruz', ''],
+      ['Antonelli%20Pond%20Santa%20Cruz', ''],
+      ['Sergeant%20Derby%20Park%20Santa%20Cruz', ''],
+      ['Harvey%20West%20Park%20Santa%20Cruz', ''],
+      ['Evergreen%20Cemetary%20Santa%20Cruz', ''],
       ['Pogonip%20Historic%20Lime%20Kiln%20Santa%20Cruz', 'hidden'],
       ['Koi%20Pond%20SantaCruz%20Santa%20Cruz', 'hidden'],
       ['Pipeline%20Trail%20Overlook%20Santa%20Cruz', 'vista'],
       ['Garden%20of%20Eden%20Santa%20Cruz', 'hidden'],
       ['Empire%20Cave%20Santa%20Cruz', 'hidden'],
-      // 'Crown%20Meadow%20Santa%20Cruz',
+      ['Crown%20Meadow%20Santa%20Cruz', ''],
       ['The%20Painted%20Barrels%20Santa%20Cruz', 'hidden'],
     ];
 

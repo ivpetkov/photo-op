@@ -12,7 +12,7 @@ import LocationDetails from './src/LocationDetails.js'
 import Favorites from './src/Favorites.js'
 import FavoritesDetails from './src/FavoritesDetails.js'
 
-console.disableYellowBox = true; 
+console.disableYellowBox = true;
 
 const AppNavigator = createStackNavigator(
   {
@@ -25,7 +25,7 @@ const AppNavigator = createStackNavigator(
     FavoritesDetails,
   },
   {
-      initialRouteName: 'Login'
+      initialRouteName: 'Loading'
   }
 )
 
