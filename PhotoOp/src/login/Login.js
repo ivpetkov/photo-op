@@ -8,6 +8,12 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 export default class Login extends React.Component {
   state = { email: '', password: '', errorMessage: null }
 
+  static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#f067ae',
+    },
+  };
+
   handleLogin = () => {
     firebase
       .auth()
@@ -86,7 +92,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#d43d8b',
+    backgroundColor: '#f067ae',
   },
   text: {
     fontSize: 20,
