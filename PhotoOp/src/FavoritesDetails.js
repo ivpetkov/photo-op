@@ -42,7 +42,7 @@ export default class FavoritesDetails extends React.Component {
     });
     var uid = firebase.auth().currentUser.uid;
     await firebase.database().ref('/users/'+uid+'/FavoritesList/').child(key).remove();
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('Favorites');
     this.setState({
       isLoading: false,
     });

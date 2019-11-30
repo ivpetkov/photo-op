@@ -3,7 +3,9 @@ import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityI
 import firebase from 'react-native-firebase'
 import Global from './Global.js'
 
-export default class Favorites extends React.Component {
+import { withNavigationFocus } from 'react-navigation';
+
+class Favorites extends React.Component {
   static navigationOptions = {
     title: 'Favorites',
   };
@@ -17,7 +19,12 @@ export default class Favorites extends React.Component {
     }
     var uid = firebase.auth().currentUser.uid;
     this.itemsRef = firebase.database().ref('/users/'+uid+'/FavoritesList/');
+  }
 
+  async componentDidUpdate(prevProps) {
+    if (prevProps.isFocused !== this.props.isFocused) {
+      await this.listenForItems(this.itemsRef);
+    }
   }
 
   async componentDidMount(){
@@ -79,7 +86,7 @@ export default class Favorites extends React.Component {
   }
 
   render() {
-    if(this.state.isLoading){
+    if(this.state.isLoading == true || this.props.isFocused == false){
       return(
         <View style={{padding: 50}}>
           <ActivityIndicator/>
@@ -116,3 +123,5 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
 })
+
+export default withNavigationFocus(Favorites);
