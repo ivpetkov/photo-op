@@ -265,8 +265,8 @@ export default class Home extends React.Component {
   render(){
     if(this.state.isLoading){
       return(
-        <View style={styles.container}>
-          <ActivityIndicator size="large" />
+        <View style={styles.activity}>
+          <ActivityIndicator size="large" color="#ffffff"/>
         </View>
       )
     }
@@ -280,9 +280,7 @@ export default class Home extends React.Component {
     return(
       <View style={styles.container}>
         <ThemeProvider theme={theme}>
-          <View style={{padding: 10}}>
-          <Button key="favorites" title="Go to favorites" onPress={() => this.props.navigation.navigate('Favorites')} />
-            <Button key="signout" title="Sign Out" onPress={this.handleSignOut} />
+          <View style={{flex: 1}}>
             <TextInput
               style={styles.textInput}
               placeholder="Enter address"
@@ -293,23 +291,30 @@ export default class Home extends React.Component {
               }}
               value={this.state.locText}
             />
-            </View>
-        <ScrollView style={styles.scrollView}>
-          {photoButtons}
-        </ScrollView>
-        <View style={{padding: 10, position: 'absolute', bottom: 200}}>
-          <Picker
-            selectedValue={this.state.filter}
-            style={{height: 50, width: 150}}
-            onValueChange={(itemValue, itemIndex) =>
-              this.filterLocByType(itemValue)
-            }>
-            <Picker.Item label="All" value="all" />
-            <Picker.Item label="Beach" value="beach" />
-            <Picker.Item label="Vista Point" value="vista" />
-            <Picker.Item label="Hidden Gem" value="hidden" />
-          </Picker>
-        </View>
+          </View>
+          <View style={{flex: 7}}>
+            <ScrollView>
+              {photoButtons}
+            </ScrollView>
+          </View>
+          <View style={{flex: 3}}>
+            <Picker
+              selectedValue={this.state.filter}
+              style={{height: 50, width: 150}}
+              itemStyle={{color: '#ffffff'}}
+              onValueChange={(itemValue, itemIndex) =>
+                this.filterLocByType(itemValue)
+              }>
+              <Picker.Item label="All" value="all" />
+              <Picker.Item label="Beach" value="beach" />
+              <Picker.Item label="Vista Point" value="vista" />
+              <Picker.Item label="Hidden Gem" value="hidden" />
+            </Picker>
+          </View>
+          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Button key="favorites" title="Favorites" onPress={() => this.props.navigation.navigate('Favorites')} />
+            <Button key="signout" title="Sign Out" onPress={this.handleSignOut} />
+          </View>
         </ThemeProvider>
       </View>
     );
@@ -320,34 +325,28 @@ const theme = {
   Button: {
     raised: false,
     containerStyle: {
-      marginTop: 10,
-      marginBottom: 10,
+      marginTop: 5,
+      marginBottom: 5,
+      paddingHorizontal: 10,
+      maxWidth: 350
     },
     buttonStyle: {
       backgroundColor: '#de97bc'
     }
   },
-  // Input: {
-  //   containerStyle: {
-  //     marginTop: 10,
-  //     marginBottom: 10,
-  //     paddingHorizontal: 40
-  //   },
-  //   inputStyle: {
-  //     color: '#ffffff',
-  //   },
-  //   inputContainerStyle: {
-  //     borderColor: '#ffffff',
-  //   },
-  //},
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#f067ae',
+  },
+  activity: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#f067ae',
   },
   text: {
     fontSize: 20,
@@ -357,30 +356,9 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40,
     width: 150,
-    color: '#de97bc',
-    borderColor: '#de97bc',
-    borderWidth: 1,
-    marginTop: 8
+    color: 'white',
+    borderColor: 'white',
+    borderWidth: 2,
+    marginTop: 10,
   },
-  scrollView: {
-    maxHeight: 450,
-  }
 })
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center'
-//   },
-//   textInput: {
-//     height: 40,
-//     width: 150,
-//     borderColor: 'gray',
-//     borderWidth: 1,
-//     marginTop: 8
-//   },
-//   scrollView: {
-//     maxHeight: 450,
-//   }
-// })

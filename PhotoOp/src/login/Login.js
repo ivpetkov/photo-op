@@ -12,6 +12,7 @@ export default class Login extends React.Component {
     headerStyle: {
       backgroundColor: '#f067ae',
     },
+    headerTintColor: '#fff',
   };
 
   handleLogin = () => {
