@@ -25,7 +25,7 @@ const AppNavigator = createStackNavigator(
     FavoritesDetails,
   },
   {
-      initialRouteName: 'Home'
+      initialRouteName: 'Login'
   }
 )
 
