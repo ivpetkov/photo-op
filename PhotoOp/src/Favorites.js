@@ -1,13 +1,20 @@
 import * as React from 'react'
-import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator } from 'react-native'
 import firebase from 'react-native-firebase'
 import Global from './Global.js'
-
-import { withNavigationFocus } from 'react-navigation';
+import { Button, ThemeProvider } from 'react-native-elements'
+import { withNavigationFocus } from 'react-navigation'
 
 class Favorites extends React.Component {
   static navigationOptions = {
     title: 'Favorites',
+    headerStyle: {
+      backgroundColor: '#f067ae',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   };
 
   constructor(props){
@@ -88,8 +95,8 @@ class Favorites extends React.Component {
   render() {
     if(this.state.isLoading == true || this.props.isFocused == false){
       return(
-        <View style={{padding: 50}}>
-          <ActivityIndicator/>
+        <View style={styles.activity}>
+          <ActivityIndicator size="large" color="#ffffff"/>
         </View>
       )
     }
@@ -101,26 +108,43 @@ class Favorites extends React.Component {
     });
 
     return (
-      <ScrollView>
-        {photoButtons}
-      </ScrollView>
+      <View style={styles.container}>
+        <ThemeProvider theme={theme}>
+          <ScrollView>
+            {photoButtons}
+          </ScrollView>
+        </ThemeProvider>
+      </View>
     );
   }
+}
+
+const theme = {
+  Button: {
+    raised: false,
+    containerStyle: {
+      marginTop: 5,
+      marginBottom: 5,
+      paddingHorizontal: 10,
+      maxWidth: 350
+    },
+    buttonStyle: {
+      backgroundColor: '#de97bc'
+    }
+  },
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#f067ae',
   },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    paddingTop: 30,
-    paddingBottom: 30,
-    paddingLeft: 10,
-    paddingRight: 10,
+  activity: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f067ae',
   },
 })
 

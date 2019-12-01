@@ -1,14 +1,23 @@
 import * as React from 'react'
-import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator, Picker } from 'react-native'
+// import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator, Picker } from 'react-native'
+import { View, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator, Picker } from 'react-native'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { getDistance, convertDistance } from 'geolib'
 import firebase from 'react-native-firebase'
 import Global from './Global.js'
+import { Button, Text, ThemeProvider } from 'react-native-elements'
 
 export default class Home extends React.Component {
   static navigationOptions = {
     title: 'Home',
+    headerStyle: {
+      backgroundColor: '#f067ae',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   };
 
   constructor(props){
@@ -32,7 +41,7 @@ export default class Home extends React.Component {
     firebase
       .auth()
       .signOut()
-      .then(() => this.props.navigation.navigate('Login'))
+      .then(() => this.props.navigation.navigate('Loading'))
   }
 
   async componentDidMount(){
@@ -49,20 +58,20 @@ export default class Home extends React.Component {
       ['Wilder%20Ranch%20State%20Park%20Santa%20Cruz', 'beach'],
       ['Jogging%20Track%20Santa%20Cruz', 'vista'],
       ['Cliff%20Drive%20Vista%20Point%20Santa%20Cruz', 'vista'],
-      // 'Neary%20Lagoon%20Park%20Santa%20Cruz',
+      ['Neary%20Lagoon%20Park%20Santa%20Cruz', ''],
       ['Santa%20Cruz%20Wharf%20Santa%20Cruz', 'vista'],
-      // 'Mission%20Santa%20Cruz%20Santa%20Cruz',
-      // 'Westlake%20Park%20Santa%20Cruz',
-      // 'Antonelli%20Pond%20Santa%20Cruz',
-      // 'Sergeant%20Derby%20Park%20Santa%20Cruz',
-      // 'Harvey%20West%20Park%20Santa%20Cruz',
-      // 'Evergreen%20Cemetary%20Santa%20Cruz',
+      ['Mission%20Santa%20Cruz%20Santa%20Cruz', ''],
+      ['Westlake%20Park%20Santa%20Cruz', ''],
+      ['Antonelli%20Pond%20Santa%20Cruz', ''],
+      ['Sergeant%20Derby%20Park%20Santa%20Cruz', ''],
+      ['Harvey%20West%20Park%20Santa%20Cruz', ''],
+      ['Evergreen%20Cemetary%20Santa%20Cruz', ''],
       ['Pogonip%20Historic%20Lime%20Kiln%20Santa%20Cruz', 'hidden'],
       ['Koi%20Pond%20SantaCruz%20Santa%20Cruz', 'hidden'],
       ['Pipeline%20Trail%20Overlook%20Santa%20Cruz', 'vista'],
       ['Garden%20of%20Eden%20Santa%20Cruz', 'hidden'],
       ['Empire%20Cave%20Santa%20Cruz', 'hidden'],
-      // 'Crown%20Meadow%20Santa%20Cruz',
+      ['Crown%20Meadow%20Santa%20Cruz', ''],
       ['The%20Painted%20Barrels%20Santa%20Cruz', 'hidden'],
     ];
 
@@ -256,8 +265,8 @@ export default class Home extends React.Component {
   render(){
     if(this.state.isLoading){
       return(
-        <View style={{padding: 50}}>
-          <ActivityIndicator/>
+        <View style={styles.activity}>
+          <ActivityIndicator size="large" color="#ffffff"/>
         </View>
       )
     }
@@ -270,54 +279,86 @@ export default class Home extends React.Component {
 
     return(
       <View style={styles.container}>
-        <View style={{padding: 10}}>
-        <Button key="favorites" title="Go to favorites" onPress={() => this.props.navigation.navigate('Favorites')} />
-          <Button key="signout" title="Sign Out" onPress={this.handleSignOut} />
-          <TextInput
-            style={styles.textInput}
-            placeholder="Enter address"
-            onChangeText={(text) => this.setState({locText: text})}
-            onSubmitEditing={a => {
-              console.log(`onSubmitEditing: ${this.state.inputText}`),
-              this.calculateNewDistance()
-            }}
-            value={this.state.locText}
-          />
-        </View>
-        <ScrollView style={styles.scrollView}>
-          {photoButtons}
-        </ScrollView>
-        <View style={{padding: 10, position: 'absolute', bottom: 200}}>
-          <Picker
-            selectedValue={this.state.filter}
-            style={{height: 50, width: 150}}
-            onValueChange={(itemValue, itemIndex) =>
-              this.filterLocByType(itemValue)
-            }>
-            <Picker.Item label="All" value="all" />
-            <Picker.Item label="Beach" value="beach" />
-            <Picker.Item label="Vista Point" value="vista" />
-            <Picker.Item label="Hidden Gem" value="hidden" />
-          </Picker>
-        </View>
+        <ThemeProvider theme={theme}>
+          <View style={{flex: 1}}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Enter address"
+              onChangeText={(text) => this.setState({locText: text})}
+              onSubmitEditing={a => {
+                console.log(`onSubmitEditing: ${this.state.inputText}`),
+                this.calculateNewDistance()
+              }}
+              value={this.state.locText}
+            />
+          </View>
+          <View style={{flex: 7}}>
+            <ScrollView>
+              {photoButtons}
+            </ScrollView>
+          </View>
+          <View style={{flex: 3}}>
+            <Picker
+              selectedValue={this.state.filter}
+              style={{height: 50, width: 150}}
+              itemStyle={{color: '#ffffff'}}
+              onValueChange={(itemValue, itemIndex) =>
+                this.filterLocByType(itemValue)
+              }>
+              <Picker.Item label="All" value="all" />
+              <Picker.Item label="Beach" value="beach" />
+              <Picker.Item label="Vista Point" value="vista" />
+              <Picker.Item label="Hidden Gem" value="hidden" />
+            </Picker>
+          </View>
+          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Button key="favorites" title="Favorites" onPress={() => this.props.navigation.navigate('Favorites')} />
+            <Button key="signout" title="Sign Out" onPress={this.handleSignOut} />
+          </View>
+        </ThemeProvider>
       </View>
     );
   }
 }
 
+const theme = {
+  Button: {
+    raised: false,
+    containerStyle: {
+      marginTop: 5,
+      marginBottom: 5,
+      paddingHorizontal: 10,
+      maxWidth: 350
+    },
+    buttonStyle: {
+      backgroundColor: '#de97bc'
+    }
+  },
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#f067ae',
+  },
+  activity: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f067ae',
+  },
+  text: {
+    fontSize: 20,
+    color: '#ffffff',
+    marginTop: 20
   },
   textInput: {
     height: 40,
     width: 150,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 8
+    color: 'white',
+    borderColor: 'white',
+    borderWidth: 2,
+    marginTop: 10,
   },
-  scrollView: {
-    maxHeight: 450,
-  }
 })

@@ -1,10 +1,19 @@
 // SignUp.js
 import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { StyleSheet, Text, TextInput, View, Image } from 'react-native'
 import firebase from 'react-native-firebase'
+import { Button, Input, ThemeProvider } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class SignUp extends React.Component {
   state = { email: '', password: '', errorMessage: null }
+
+  static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#f067ae',
+    },
+    headerTintColor: '#fff',
+  };
 
   handleSignUp = () => {
     firebase
@@ -18,46 +27,78 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Sign Up</Text>
-        {this.state.errorMessage &&
-          <Text style={{ color: 'red' }}>
-            {this.state.errorMessage}
-          </Text>}
-        <TextInput
-          placeholder="Email"
-          autoCapitalize="none"
-          style={styles.textInput}
-          onChangeText={email => this.setState({ email })}
-          value={this.state.email}
-        />
-        <TextInput
-          secureTextEntry
-          placeholder="Password"
-          autoCapitalize="none"
-          style={styles.textInput}
-          onChangeText={password => this.setState({ password })}
-          value={this.state.password}
-        />
-        <Button title="Sign Up" onPress={this.handleSignUp} />
-        <Button
-          title="Already have an account? Login"
-          onPress={() => this.props.navigation.navigate('Login')}
-        />
+        <ThemeProvider theme={theme}>
+          <Image
+            style={{height: 150, width: 120}}
+            source={require('./logo.png')}
+          />
+          <Text style={styles.text}>Sign Up</Text>
+          {this.state.errorMessage &&
+            <Text style={{ color: 'white', paddingHorizontal: 40 }}>
+              {this.state.errorMessage}
+            </Text>}
+          <Input
+            placeholder="Email"
+            autoCapitalize="none"
+            onChangeText={email => this.setState({ email })}
+            value={this.state.email}
+          />
+          <Input
+            secureTextEntry
+            placeholder="Password"
+            autoCapitalize="none"
+            onChangeText={password => this.setState({ password })}
+            value={this.state.password}
+          />
+          <Button title="Sign Up" onPress={this.handleSignUp} />
+          <Text style={styles.text}>Already have an account?</Text>
+          <Button
+            title="Login"
+            onPress={() => this.props.navigation.navigate('Login')}
+          />
+        </ThemeProvider>
       </View>
     )
   }
 }
+
+const theme = {
+  Button: {
+    raised: false,
+    containerStyle: {
+      marginTop: 10,
+      marginBottom: 10,
+      width: 100,
+    },
+    buttonStyle: {
+      backgroundColor: '#de97bc'
+    }
+  },
+  Input: {
+    containerStyle: {
+      marginTop: 10,
+      marginBottom: 10,
+      paddingHorizontal: 40
+    },
+    inputStyle: {
+      color: '#ffffff',
+    },
+    inputContainerStyle: {
+      borderColor: '#ffffff',
+    },
+  },
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#f067ae',
   },
-  textInput: {
-    height: 40,
-    width: '90%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 8
-  }
+  text: {
+    fontSize: 20,
+    color: '#ffffff',
+    marginTop: 20
+  },
 })
