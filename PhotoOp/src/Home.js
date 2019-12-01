@@ -1,14 +1,23 @@
 import * as React from 'react'
-import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator, Picker } from 'react-native'
+// import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator, Picker } from 'react-native'
+import { View, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator, Picker } from 'react-native'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { getDistance, convertDistance } from 'geolib'
 import firebase from 'react-native-firebase'
 import Global from './Global.js'
+import { Button, Text, ThemeProvider } from 'react-native-elements'
 
 export default class Home extends React.Component {
   static navigationOptions = {
     title: 'Home',
+    headerStyle: {
+      backgroundColor: '#f067ae',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
   };
 
   constructor(props){
@@ -270,20 +279,21 @@ export default class Home extends React.Component {
 
     return(
       <View style={styles.container}>
-        <View style={{padding: 10}}>
-        <Button key="favorites" title="Go to favorites" onPress={() => this.props.navigation.navigate('Favorites')} />
-          <Button key="signout" title="Sign Out" onPress={this.handleSignOut} />
-          <TextInput
-            style={styles.textInput}
-            placeholder="Enter address"
-            onChangeText={(text) => this.setState({locText: text})}
-            onSubmitEditing={a => {
-              console.log(`onSubmitEditing: ${this.state.inputText}`),
-              this.calculateNewDistance()
-            }}
-            value={this.state.locText}
-          />
-        </View>
+        <ThemeProvider theme={theme}>
+          <View style={{padding: 10}}>
+          <Button key="favorites" title="Go to favorites" onPress={() => this.props.navigation.navigate('Favorites')} />
+            <Button key="signout" title="Sign Out" onPress={this.handleSignOut} />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Enter address"
+              onChangeText={(text) => this.setState({locText: text})}
+              onSubmitEditing={a => {
+                console.log(`onSubmitEditing: ${this.state.inputText}`),
+                this.calculateNewDistance()
+              }}
+              value={this.state.locText}
+            />
+            </View>
         <ScrollView style={styles.scrollView}>
           {photoButtons}
         </ScrollView>
@@ -300,21 +310,55 @@ export default class Home extends React.Component {
             <Picker.Item label="Hidden Gem" value="hidden" />
           </Picker>
         </View>
+        </ThemeProvider>
       </View>
     );
   }
+}
+
+const theme = {
+  Button: {
+    raised: false,
+    containerStyle: {
+      marginTop: 10,
+      marginBottom: 10,
+    },
+    buttonStyle: {
+      backgroundColor: '#de97bc'
+    }
+  },
+  // Input: {
+  //   containerStyle: {
+  //     marginTop: 10,
+  //     marginBottom: 10,
+  //     paddingHorizontal: 40
+  //   },
+  //   inputStyle: {
+  //     color: '#ffffff',
+  //   },
+  //   inputContainerStyle: {
+  //     borderColor: '#ffffff',
+  //   },
+  //},
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  text: {
+    fontSize: 20,
+    color: '#ffffff',
+    marginTop: 20
   },
   textInput: {
     height: 40,
     width: 150,
-    borderColor: 'gray',
+    color: '#de97bc',
+    borderColor: '#de97bc',
     borderWidth: 1,
     marginTop: 8
   },
@@ -322,3 +366,21 @@ const styles = StyleSheet.create({
     maxHeight: 450,
   }
 })
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center'
+//   },
+//   textInput: {
+//     height: 40,
+//     width: 150,
+//     borderColor: 'gray',
+//     borderWidth: 1,
+//     marginTop: 8
+//   },
+//   scrollView: {
+//     maxHeight: 450,
+//   }
+// })
