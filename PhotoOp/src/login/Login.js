@@ -1,13 +1,16 @@
-// Login.js
+/*
+  Login screen component that handles login
+*/
+
 import React from 'react'
 import { StyleSheet, View, Image } from 'react-native'
 import firebase from 'react-native-firebase'
 import { Button, Input, Text, ThemeProvider } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class Login extends React.Component {
   state = { email: '', password: '', errorMessage: null }
 
+  // Background color and text color of navigation header
   static navigationOptions = {
     headerStyle: {
       backgroundColor: '#f067ae',
@@ -15,6 +18,7 @@ export default class Login extends React.Component {
     headerTintColor: '#fff',
   };
 
+  // Function that handles login using Firebase Authentication
   handleLogin = () => {
     firebase
       .auth()
@@ -23,6 +27,7 @@ export default class Login extends React.Component {
       .catch(error => this.setState({ errorMessage: error.message }))
   }
 
+  // When the component renders, return the login screen
   render() {
     return (
       <View style={styles.container}>
@@ -32,16 +37,19 @@ export default class Login extends React.Component {
             source={require('./logo.png')}
           />
           <Text style={styles.text}>Login</Text>
+          {/* If firebase returns an error message, display it here*/}
           {this.state.errorMessage &&
             <Text style={{ color: 'white', paddingHorizontal: 40 }}>
               {this.state.errorMessage}
             </Text>}
+          {/* Input text for email */}
           <Input
             autoCapitalize="none"
             placeholder="Email"
             onChangeText={email => this.setState({ email })}
             value={this.state.email}
           />
+          {/* Input text for password */}
           <Input
             secureTextEntry
             autoCapitalize="none"
@@ -49,8 +57,10 @@ export default class Login extends React.Component {
             onChangeText={password => this.setState({ password })}
             value={this.state.password}
           />
+          {/* Login button that calls handleLogin function and navigates to home screen upon valid login */}
           <Button title="Login" onPress={this.handleLogin} />
           <Text style={styles.text}>Need an account?</Text>
+          {/* Sign Up button navigates to SignUp screen */}
           <Button
             title="Sign Up"
             onPress={() => this.props.navigation.navigate('SignUp')}
@@ -61,6 +71,7 @@ export default class Login extends React.Component {
   }
 }
 
+// Theme for React Native elements components
 const theme = {
   Button: {
     raised: false,
@@ -88,6 +99,7 @@ const theme = {
   },
 }
 
+// Styling for default React Native components
 const styles = StyleSheet.create({
   container: {
     flex: 1,

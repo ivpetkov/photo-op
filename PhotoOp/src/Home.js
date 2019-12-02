@@ -1,5 +1,8 @@
+/*
+  Home screen component that contains list of photo locations
+*/
+
 import * as React from 'react'
-// import { Button, View, Text, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator, Picker } from 'react-native'
 import { View, StyleSheet, Image, ScrollView, TextInput, ActivityIndicator, Picker } from 'react-native'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
@@ -9,6 +12,7 @@ import Global from './Global.js'
 import { Button, Text, ThemeProvider } from 'react-native-elements'
 
 export default class Home extends React.Component {
+  // Background color and text color of navigation header
   static navigationOptions = {
     title: 'Home',
     headerStyle: {
@@ -20,6 +24,7 @@ export default class Home extends React.Component {
     },
   };
 
+  // Constructor that defines all initial states
   constructor(props){
     super(props);
     this.state = {
@@ -37,6 +42,7 @@ export default class Home extends React.Component {
     this.calculateDistance = this.calculateDistance.bind(this);
   }
 
+  // Function that handles signOut and redirect to Loading screen
   handleSignOut = () => {
     firebase
       .auth()
@@ -44,11 +50,15 @@ export default class Home extends React.Component {
       .then(() => this.props.navigation.navigate('Loading'))
   }
 
+  // When the component mounts, call the calculateDistance function
   async componentDidMount(){
     await this.calculateDistance();
-    console.log(firebase.auth().currentUser);
   }
 
+  /*
+    Get the location name, longitude, latitude, address, photo reference,
+    and type of each recommended location using the Google Maps Plaecs API call
+  */
   async getPhotoCoords(){
     var photoLocations = [
       ['Natural%20Bridges%20State%20Beach%20Santa%20Cruz', 'beach'],
@@ -100,6 +110,7 @@ export default class Home extends React.Component {
     }
   }
 
+  // Calculate the distance between inputted location and all photo locations
   async calculateDistance(){
     this.setState({
       isLoading: true
@@ -107,6 +118,7 @@ export default class Home extends React.Component {
     await this.getCoords();
     await this.getPhotoCoords();
 
+    // Call geolib module to getDistance and convert it to miles for each location
     for(var i = 0; i < this.state.photoDists.length; i++){
       calculated_dist = await getDistance(
         {latitude: this.state.latitude, longitude: this.state.longitude },
@@ -126,6 +138,7 @@ export default class Home extends React.Component {
     });
   }
 
+  // Calculates new distances when user inputs a new address
   async calculateNewDistance(){
     this.setState({
       isLoading: true
@@ -153,10 +166,12 @@ export default class Home extends React.Component {
     });
   }
 
+  // Parses the user's inputted address
   parseAddress(address) {
     return address.split(' ').join('+');
   }
 
+  // Gets the latitude and the longitude of the user's inputted address by calling the Google Maps geocoding API
   async getCoords(){
     var address = this.parseAddress(this.state.locText);
     var apiCall = 'https://maps.googleapis.com/maps/api/geocode/json?address='+address+',Santa+Cruz,+CA&key=AIzaSyBv__05nyUa8JC7A1WRZ4KCDJnfYP5Bt5o';
@@ -173,12 +188,14 @@ export default class Home extends React.Component {
     });
   }
 
+  // Helper function for sortLocations
   comparator(a,b){
     if (a[1] < b[1]) return -1;
     if (a[1] > b[1]) return 1;
     return 0;
   }
 
+  // Sorts the recommended locations based on their calculated distances from closest to furthest
   sortLocations(){
     myArray = this.state.distVals.sort(this.comparator);
     this.setState({
@@ -186,6 +203,7 @@ export default class Home extends React.Component {
     });
   }
 
+  // Converts the array of locations into an array of objects so they can be displayed on the interface
   toArrayOfObjects(){
     var distValsObjectsArray = [];
     for(var i = 0; i < this.state.distVals.length; i++) {
@@ -204,6 +222,10 @@ export default class Home extends React.Component {
     });
   }
 
+  /*
+    Update the stored name, address, and photo reference of the location the user clicks on, navigates
+    to the LocationDetails screen, and passes the state to LocationDetails
+  */
   updateCurrLocInfo(name, address, photoRef) {
     var newLocInfo = [name, address, photoRef];
     this.setState({
@@ -212,11 +234,13 @@ export default class Home extends React.Component {
     this.props.navigation.navigate('LocationDetails');
   }
 
+  // Filters the recommended locations based on the user's specified type
   async filterLocByType(itemValue){
     this.setState({
       isLoading: true,
       filter: itemValue,
     });
+    // If the user picks 'all', display all recommended locations
     if(itemValue === 'all') {
       this.setState({
         distVals: []
@@ -236,6 +260,7 @@ export default class Home extends React.Component {
       await this.sortLocations();
       await this.toArrayOfObjects();
     }
+    // If the user picks any other value, only display the locations that match that type
     if(itemValue === 'beach' || itemValue === 'vista' || itemValue === 'hidden') {
       this.setState({
         distVals: []
@@ -262,6 +287,7 @@ export default class Home extends React.Component {
     });
   }
 
+  // When the component renders, return the home screen
   render(){
     if(this.state.isLoading){
       return(
@@ -271,8 +297,10 @@ export default class Home extends React.Component {
       )
     }
 
+    // Stores the current state of this component and passes it to the Global module
     Global.component = this;
 
+    // Maps the photo locations to buttons
     const photoButtons = this.state.distVals.map(b => {
       return <Button key={b.key} title={b.buttonText} onPress={() => this.updateCurrLocInfo(b.locName, b.locAddress, b.locPhotoRef)} />;
     });
@@ -281,23 +309,25 @@ export default class Home extends React.Component {
       <View style={styles.container}>
         <ThemeProvider theme={theme}>
           <View style={{flex: 1}}>
+            {/* Input box for user's desired location */}
             <TextInput
               style={styles.textInput}
               placeholder="Enter address"
               onChangeText={(text) => this.setState({locText: text})}
               onSubmitEditing={a => {
-                console.log(`onSubmitEditing: ${this.state.inputText}`),
                 this.calculateNewDistance()
               }}
               value={this.state.locText}
             />
           </View>
           <View style={{flex: 7}}>
+            {/* Scrollable view of all recommended locations */}
             <ScrollView>
               {photoButtons}
             </ScrollView>
           </View>
           <View style={{flex: 3}}>
+            {/* Picker for type of location */}
             <Picker
               selectedValue={this.state.filter}
               style={{height: 50, width: 150}}
@@ -311,6 +341,7 @@ export default class Home extends React.Component {
               <Picker.Item label="Hidden Gem" value="hidden" />
             </Picker>
           </View>
+          {/* Contains buttons that navigate to Favorites screen and signs user out */}
           <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
             <Button key="favorites" title="Favorites" onPress={() => this.props.navigation.navigate('Favorites')} />
             <Button key="signout" title="Sign Out" onPress={this.handleSignOut} />
@@ -321,6 +352,7 @@ export default class Home extends React.Component {
   }
 }
 
+// Theme for React Native elements components
 const theme = {
   Button: {
     raised: false,
@@ -336,6 +368,7 @@ const theme = {
   },
 }
 
+// Styling for default React Native components
 const styles = StyleSheet.create({
   container: {
     flex: 1,
