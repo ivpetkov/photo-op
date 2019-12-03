@@ -1,7 +1,7 @@
 # photo-op
 An app to find your next photo location
 
-Installation Guide:
+Installation Steps:
 
 Before cloning:
   Follow “Installing dependencies” instructions: https://facebook.github.io/react-native/docs/getting-started
